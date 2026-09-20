@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="AI-powered travel planning system with real-time flights, hotels, places, weather, events, and personalized day-wise itineraries.">
+    <title>Travel Agentic AI — Intelligent Travel Planning</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌍</text></svg>">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body>
+    <div id="app">
+        <!-- ===== Navbar ===== -->
+        <nav class="navbar" id="navbar">
+            <a href="#" class="navbar-brand">
+                <span class="logo-icon">🌍</span>
+                <h1>Travel Agentic AI</h1>
+            </a>
+            <div class="navbar-status">
+                <span class="status-dot" id="statusDot"></span>
+                <span id="statusText">Connecting...</span>
+            </div>
+        </nav>
+
+        <!-- ===== Main Content ===== -->
+        <main class="main-content">
+            <!-- Hero -->
+            <section class="hero" id="heroSection">
+                <h2>Plan Your Dream Trip with AI</h2>
+                <p>Powered by 8 specialized AI agents, real-time APIs, and GPT reasoning for truly personalized travel
+                    experiences.</p>
+            </section>
+
+            <!-- Planning Form -->
+            <section class="planning-form glass-card" id="planningForm">
+                <form id="travelForm">
+                    <div class="form-grid">
+                        <!-- Source -->
+                        <div class="form-group">
+                            <label><span class="icon">🛫</span> From (Source City)</label>
+                            <input type="text" class="form-input" id="source" placeholder="e.g., New York" required>
+                        </div>
+                        <!-- Destination -->
+                        <div class="form-group">
+                            <label><span class="icon">🛬</span> To (Destination)</label>
+                            <input type="text" class="form-input" id="destination" placeholder="e.g., Paris" required>
+                        </div>
+                        <!-- Departure Date -->
+                        <div class="form-group">
+                            <label><span class="icon">📅</span> Departure Date</label>
+                            <input type="date" class="form-input" id="departureDate" required>
+                        </div>
+                        <!-- Return Date -->
+                        <div class="form-group">
+                            <label><span class="icon">📅</span> Return Date</label>
+                            <input type="date" class="form-input" id="returnDate" required>
+                        </div>
+                        <!-- Travelers -->
+                        <div class="form-group">
+                            <label><span class="icon">👥</span> Travelers</label>
+                            <select class="form-input" id="travelers">
+                                <option value="1">1 Traveler</option>
+                                <option value="2">2 Travelers</option>
+                                <option value="3">3 Travelers</option>
+                                <option value="4">4 Travelers</option>
+                                <option value="5">5+ Travelers</option>
+                            </select>
+                        </div>
+                        <!-- Budget Level -->
+                        <div class="form-group">
+                            <label><span class="icon">💰</span> Budget Level</label>
+                            <select class="form-input" id="budgetLevel">
+                                <option value="budget">💵 Budget</option>
+                                <option value="moderate" selected>💰 Moderate</option>
+                                <option value="luxury">💎 Luxury</option>
+                            </select>
+                        </div>
+                        <!-- Budget Amount -->
+                        <div class="form-group">
+                            <label><span class="icon">💲</span> Total Budget (USD, optional)</label>
+                            <input type="number" class="form-input" id="budgetAmount" placeholder="e.g., 3000"
+                                min="100">
+                        </div>
+                        <!-- Interests -->
+                        <div class="form-group full-width">
+                            <label><span class="icon">✨</span> Your Interests</label>
+                            <div class="interests-container" id="interestsContainer"></div>
+                        </div>
+                        <!-- Special Requirements -->
+                        <div class="form-group full-width">
+                            <label><span class="icon">💬</span> Special Requirements / Natural Language Input</label>
+                            <textarea class="form-input" id="specialReqs"
+                                placeholder="e.g., I love local street food and want to see a jazz concert. I prefer boutique hotels near the city center..."></textarea>
+                        </div>
+                    </div>
+                    <!-- Submit -->
+                    <button type="submit" class="btn-primary" id="submitBtn">
+                        <span>🚀 Generate AI Travel Plan</span>
+                    </button>
+                </form>
+            </section>
+
+            <!-- Results -->
+            <section class="results-container" id="resultsContainer">
+                <div class="results-header">
+                    <h2 id="resultsTitle">Your Travel Plan</h2>
+                    <div class="tab-navigation" id="tabNavigation"></div>
+                </div>
+                <div id="tabContent"></div>
+            </section>
+        </main>
+
+        <!-- Loading Overlay -->
+        <div class="loading-overlay" id="loadingOverlay">
+            <div class="loading-spinner-large"></div>
+            <div class="loading-text">
+                <div style="font-size:1.4rem;font-weight:700;margin-bottom:8px;font-family:var(--font-heading);">🤖 AI
+                    Agents at Work</div>
+                <div id="loadingStatus">Initializing agents...</div>
+            </div>
+            <div class="loading-agents" id="loadingAgents"></div>
+        </div>
+
+        <!-- Chat Widget -->
+        <div class="chat-widget">
+            <div class="chat-panel" id="chatPanel">
+                <div class="chat-header">
+                    <span>🤖</span> AI Travel Assistant
+                </div>
+                <div class="chat-messages" id="chatMessages"></div>
+                <div class="chat-input-area">
+                    <input type="text" id="chatInput" placeholder="Ask about your trip...">
+                    <button id="chatSend">➤</button>
+                </div>
+            </div>
+            <button class="chat-toggle" id="chatToggle" title="Chat with AI">💬</button>
+        </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+
+</html>
